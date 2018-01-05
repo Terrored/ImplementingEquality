@@ -10,6 +10,8 @@ namespace ImplementingEquality
     {
         static void Main(string[] args)
         {
+            // Value equality
+
             FoodItem banana = new FoodItem("banana",FoodGroup.Fruits);
             FoodItem banana2 = new FoodItem("banana",FoodGroup.Fruits);
             FoodItem peach = new FoodItem("peach",FoodGroup.Fruits);
@@ -22,8 +24,33 @@ namespace ImplementingEquality
             Console.WriteLine($"'==' -> banana = peach :" + (banana==peach));
             Console.WriteLine($"'==' -> banana = salami :" + (banana==salami));
 
+
+            // Reference equality
+
+            Food apple = new Food("apple", FoodGroup.Fruits);
+            CookedFood stewedApple = new CookedFood("stewed","apple", FoodGroup.Fruits);
+            CookedFood bakedApple = new CookedFood("basked","apple", FoodGroup.Fruits);
+            CookedFood stewedApple2 = new CookedFood("stewed","apple",FoodGroup.Fruits);
+            Food apple2 = new Food("apple",FoodGroup.Fruits);
+            
+            DisplayWhetherEqual(apple,stewedApple);
+            DisplayWhetherEqual(stewedApple,bakedApple);
+            DisplayWhetherEqual(stewedApple,stewedApple2);
+            DisplayWhetherEqual(apple,apple2);
+            DisplayWhetherEqual(apple,apple);
+
             Console.ReadLine();
 
+        }
+
+        static void DisplayWhetherEqual(Food food1, Food food2)
+        {
+            if(food1==food2)
+                Console.WriteLine(string.Format("{0,12} == {1}",food1,food2));
+            else
+            {
+                Console.WriteLine(string.Format("{0,12} != {1}",food1,food2));
+            }
         }
     }
 }
